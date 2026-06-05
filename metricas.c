@@ -155,7 +155,7 @@ void insertionSort(int arr[], int n)
 
 /* INSERTION SORT 2.0*/
 
-void insertion(int arr[], int n)
+void insertion2_0(int arr[], int n)
 {
     /* insertion sort baseado nos slides */
     int i, j;
