@@ -2,10 +2,23 @@
 #include <limits.h>
 #include <stdlib.h>
 
-// Função auxiliar para o qsort caso a amplitude seja grande demais
+/* =========================================================
+   FUNÇÕES AUXILIARES (Encapsuladas com 'static')
+   ========================================================= */
+
 static int comparar(const void *a, const void *b) {
     return (*(int*)a - *(int*)b);
 }
+
+static void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/* =========================================================
+   ANÁLISE DE ENTRADA
+   ========================================================= */
 
 PerfilEntrada analisar_input(int *input, int tamanho) {
     PerfilEntrada metrics = {0};
@@ -110,4 +123,192 @@ PerfilEntrada analisar_input(int *input, int tamanho) {
     }
     
     return metrics;
+}
+
+/* =========================================================
+   ALGORITMOS DE ORDENAÇÃO
+   ========================================================= */
+
+
+
+/* INSERTION SORT */
+
+void insertionSort(int arr[], int n)
+{
+    /* insertion sort classico*/
+    int i, j, key;
+
+    for (i = 1; i < n; i++)
+    {
+        key = arr[i];
+        j = i - 1;
+
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = key;
+    }
+}
+
+/* INSERTION SORT 2.0*/
+
+void insertion(int arr[], int n)
+{
+    /* insertion sort baseado nos slides */
+    int i, j;
+    for(i = 0; i < n-1; i++)
+    {
+        j = i;
+        while(j >=0 && arr[j]>arr[j+1])
+        {
+            swap(&arr[j], &arr[j+1]);
+            j = j - 1;
+        }
+    }
+
+}
+/* QUICK SORT */
+
+static int partition(int arr[], int low, int high)
+{
+    // Coloca o pivô escolhido no final para a lógica de Lomuto funcionar
+    int mid = low + (high - low) / 2;
+    swap(&arr[mid], &arr[high]);
+    /* funcao auxiliar que vai ordenar cada particao da entrada*/
+    /* escolhendo o pivo do meio, (low + high)/2 , para ter bom desempenho quando for ordenacao inversa*/
+    int pivot = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++)
+    {
+        if (arr[j] <= pivot)
+        {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+
+    swap(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition(arr, low, high);
+        /* usando recorrencia para ordenar as particoes menores*/
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+/* MERGE SORT */
+
+void merge(int arr[], int left, int mid, int right)
+{
+    /* Recebe duas particoes adjacentes ja ordenadas e as combina em uma unica particao maior, mantendo a ordenacao.*/
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    int *L = (int *)malloc(n1 * sizeof(int));
+    int *R = (int *)malloc(n2 * sizeof(int));
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    int i = 0;
+    int j = 0;
+    int k = left;
+
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+            arr[k++] = L[i++];
+        else
+            arr[k++] = R[j++];
+    }
+
+    while (i < n1)
+        arr[k++] = L[i++];
+
+    while (j < n2)
+        arr[k++] = R[j++];
+
+    free(L);
+    free(R);
+}
+
+void mergeSort(int arr[], int left, int right)
+{
+    /* aplicacao da funcao merge*/
+    if (left < right)
+    {
+        int mid = left + (right - left) / 2;
+
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+
+        merge(arr, left, mid, right);
+    }
+}
+
+/* HEAP SORT */
+
+void heapify(int arr[], int n, int i)
+{
+    /* transformara a entrada inicial em um heap*/
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (left < n && arr[left] > arr[largest])
+        largest = left;
+
+    if (right < n && arr[right] > arr[largest])
+        largest = right;
+
+    if (largest != i)
+    {
+        swap(&arr[i], &arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+void heapSort(int arr[], int n)
+{
+    /* ordenara o heap recebido de acordo com o heap sort em ordem crescente*/
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i > 0; i--)
+    {
+        swap(&arr[0], &arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+
+/* SHELL SORT */
+
+void shellSort(int arr[], int n)
+{
+    for (int gap = n / 2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < n; i++)
+        {
+            int temp = arr[i];
+            int j;
+
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                arr[j] = arr[j - gap];
+
+            arr[j] = temp;
+        }
+    }
 }

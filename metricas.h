@@ -16,6 +16,15 @@ typedef struct {
     int tipo_distribuicao;       
 } PerfilEntrada;
 
+// Função de Análise
 PerfilEntrada analisar_input(int *input, int tamanho);
+
+// Algoritmos de Ordenação
+void insertionSort(int arr[], int n);
+void insertion2_0(int arr[], int n);
+void quickSort(int arr[], int low, int high);
+void mergeSort(int arr[], int left, int right);
+void heapSort(int arr[], int n);
+void shellSort(int arr[], int n);
 
 #endif
