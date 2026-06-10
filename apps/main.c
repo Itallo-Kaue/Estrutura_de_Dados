@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <string.h>
 #include "metricas.h"
 #include "execucao.h"
 #include "decisao.h"
@@ -91,7 +93,7 @@ int main(int argc, char *argv[]) {
         printf("Uso: %s --modo <adaptativo|fixo> --input <arquivo.txt>\n", argv[0]);
         return 1;
     }
-    int dados_originais[] = NULL;
+    int *dados_originais = NULL;
     int tamanho = 0;
 
     // Definição da fonte de dados de entrada
