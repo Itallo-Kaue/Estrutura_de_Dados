@@ -84,7 +84,7 @@ int main() {
 
     // resultado
     printf("\nResultado da Execucao:\n");
-    imprimir_metricas(algoritmo_escolhido, m);
+    imprimir_metricas(algoritmo_escolhido, tamanho);
 
     return 0;
 }
