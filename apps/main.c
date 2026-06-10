@@ -80,11 +80,11 @@ int main() {
     printf("Algoritmo selecionado pela heuristica: %s\n", algoritmo_escolhido);
 
     // execucao e coleta de dados
-    MetricasExecucao m = executar_com_inteligencia(algoritmo_escolhido, dados, n);
+    MetricasExecucao m = executar_com_inteligencia(algoritmo_escolhido, dados_originais, Tamanho);
 
     // resultado
     printf("\nResultado da Execucao:\n");
-    imprimir_metricas(algoritmo_escolhido, tamanho);
+    imprimir_metricas(algoritmo_escolhido, m);
 
     return 0;
 }
