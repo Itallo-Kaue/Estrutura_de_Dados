@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "metricas.h"
 #include "execucao.h"
+#include "decisao.h"
 
 void imprimir_array(int *arr, int tamanho) {
     for (int i = 0; i < tamanho; i++) {
@@ -15,6 +16,9 @@ void resetar_dados(int *destino, int *origem, int tamanho) {
         destino[i] = origem[i];
     }
 }
+
+const char* decidir_algoritmo(PerfilEntrada p);
+MetricasExecucao executar_com_inteligencia(const char* nome, int* arr, int n);
 
 int main() {
     int dados_originais[] = {10, 2, 5, 5, 2, 8, 9, 1, 100};
@@ -65,6 +69,22 @@ int main() {
     resetar_dados(dados_teste, dados_originais, tamanho);
     m = medir_shellSort(dados_teste, tamanho);
     imprimir_metricas("Shell Sort", m);
+
+     printf("=== SISTEMA ADAPTATIVO: TESTE DE INTEGRACAO ===\n");
+
+    // analise 
+    PerfilEntrada perf = analisar_input(dados_originais, tamanho);
+
+    // decisao
+    const char* algoritmo_escolhido = decidir_algoritmo(perf);
+    printf("Algoritmo selecionado pela heuristica: %s\n", algoritmo_escolhido);
+
+    // execucao e coleta de dados
+    MetricasExecucao m = executar_com_inteligencia(algoritmo_escolhido, dados, n);
+
+    // resultado
+    printf("\nResultado da Execucao:\n");
+    imprimir_metricas(algoritmo_escolhido, m);
 
     return 0;
 }
