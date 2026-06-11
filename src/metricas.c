@@ -153,23 +153,21 @@ void insertionSort(int arr[], int n)
     }
 }
 
-/* INSERTION SORT 2.0*/
-
-void insertion2_0(int arr[], int n)
-{
-    /* insertion sort baseado nos slides */
-    int i, j;
-    for(i = 0; i < n-1; i++)
-    {
-        j = i;
-        while(j >=0 && arr[j]>arr[j+1])
-        {
-            swap(&arr[j], &arr[j+1]);
-            j = j - 1;
+/* SELECTION SORT CONVENCIONAL */
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
+            }
+        }
+        if (min_idx != i) {
+            swap(&arr[i], &arr[min_idx]);
         }
     }
-
 }
+
 /* QUICK SORT */
 
 static int partition(int arr[], int low, int high)
@@ -259,56 +257,30 @@ void mergeSort(int arr[], int left, int right)
     }
 }
 
-/* HEAP SORT */
+/* COUNTING SORT CONVENCIONAL */
+void countingSort(int arr[], int n) {
+    if (n <= 1) return;
 
-void heapify(int arr[], int n, int i)
-{
-    /* transformara a entrada inicial em um heap*/
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if (left < n && arr[left] > arr[largest])
-        largest = left;
-
-    if (right < n && arr[right] > arr[largest])
-        largest = right;
-
-    if (largest != i)
-    {
-        swap(&arr[i], &arr[largest]);
-        heapify(arr, n, largest);
+    int max = arr[0];
+    int min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) max = arr[i];
+        if (arr[i] < min) min = arr[i];
     }
-}
+    int range = max - min + 1;
 
-void heapSort(int arr[], int n)
-{
-    /* ordenara o heap recebido de acordo com o heap sort em ordem crescente*/
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
+    int *count = (int *)calloc(range, sizeof(int));
+    int *output = (int *)malloc(n * sizeof(int));
 
-    for (int i = n - 1; i > 0; i--)
-    {
-        swap(&arr[0], &arr[i]);
-        heapify(arr, i, 0);
+    for (int i = 0; i < n; i++) count[arr[i] - min]++;
+    for (int i = 1; i < range; i++) count[i] += count[i - 1];
+    
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i] - min] - 1] = arr[i];
+        count[arr[i] - min]--;
     }
-}
+    for (int i = 0; i < n; i++) arr[i] = output[i];
 
-/* SHELL SORT */
-
-void shellSort(int arr[], int n)
-{
-    for (int gap = n / 2; gap > 0; gap /= 2)
-    {
-        for (int i = gap; i < n; i++)
-        {
-            int temp = arr[i];
-            int j;
-
-            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
-                arr[j] = arr[j - gap];
-
-            arr[j] = temp;
-        }
-    }
+    free(count);
+    free(output);
 }

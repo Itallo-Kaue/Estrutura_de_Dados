@@ -2,6 +2,7 @@
 #include "execucao.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <time.h>
 
 
@@ -18,10 +19,9 @@ static void trocar_m(int *a, int *b, long long *trocas) {
     (*trocas)++;
 }
 
-/* =========================================================
-   INSERTION SORT CLÁSSICO INSTRUMENTADO
+/* /* =========================================================
+   INSERTION SORT INSTRUMENTADO
    ========================================================= */
-
 MetricasExecucao medir_insertionSort(int arr[], int n) {
     MetricasExecucao m = {0};
     m.estavel = true;
@@ -32,11 +32,11 @@ MetricasExecucao medir_insertionSort(int arr[], int n) {
         int key = arr[i];
         int j = i - 1;
 
-        /* desloca elementos maiores que 'key' uma posição à frente */
+        /* Desloca elementos maiores que 'key' uma posição à frente */
         while (j >= 0) {
             m.comparacoes++;
             if (arr[j] > key) {
-                arr[j + 1] = arr[j]; /* movimentação conta como troca */
+                arr[j + 1] = arr[j]; /* Movimentação conta como troca */
                 m.trocas++;
                 j--;
             } else {
@@ -51,25 +51,27 @@ MetricasExecucao medir_insertionSort(int arr[], int n) {
 }
 
 /* =========================================================
-   INSERTION SORT 2.0 INSTRUMENTADO 
+   SELECTION SORT INSTRUMENTADO
    ========================================================= */
-
-MetricasExecucao medir_insertion2_0(int arr[], int n) {
+MetricasExecucao medir_selectionSort(int arr[], int n) {
     MetricasExecucao m = {0};
-    m.estavel = true;
+    m.estavel = false;
 
     double t0 = tempo_atual_ms();
 
     for (int i = 0; i < n - 1; i++) {
-        int j = i;
-        while (j >= 0) {
+        int min_idx = i;
+        
+        for (int j = i + 1; j < n; j++) {
             m.comparacoes++;
-            if (arr[j] > arr[j + 1]) {
-                trocar_m(&arr[j], &arr[j + 1], &m.trocas);
-                j--;
-            } else {
-                break;
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
             }
+        }
+
+        /* Só realiza a troca se o menor elemento estiver fora de posição */
+        if (min_idx != i) {
+            trocar_m(&arr[i], &arr[min_idx], &m.trocas);
         }
     }
 
@@ -78,14 +80,9 @@ MetricasExecucao medir_insertion2_0(int arr[], int n) {
 }
 
 /* =========================================================
-   QUICK SORT INSTRUMENTADO
+   QUICK SORT INSTRUMENTADO (Pivô Fixo: Último Elemento)
    ========================================================= */
-
 static int particionar_m(int arr[], int low, int high, MetricasExecucao *m) {
-    /* pivô do meio para melhor desempenho em entradas inversamente ordenadas */
-    int mid = low + (high - low) / 2;
-    trocar_m(&arr[mid], &arr[high], &m->trocas);
-
     int pivot = arr[high];
     int i = low - 1;
 
@@ -93,20 +90,22 @@ static int particionar_m(int arr[], int low, int high, MetricasExecucao *m) {
         m->comparacoes++;
         if (arr[j] <= pivot) {
             i++;
-            trocar_m(&arr[i], &arr[j], &m->trocas);
+            if (i != j) { /* Trava que evita faturamento falso de trocas */
+                trocar_m(&arr[i], &arr[j], &m->trocas);
+            }
         }
     }
-
-    trocar_m(&arr[i + 1], &arr[high], &m->trocas);
+    if ((i + 1) != high) {
+        trocar_m(&arr[i + 1], &arr[high], &m->trocas);
+    }
     return i + 1;
 }
 
-static void quickSort_m(int arr[], int low, int high,
-                         MetricasExecucao *m, int profundidade) {
-    /* contabiliza esta chamada e atualiza a profundidade máxima atingida */
+static void quickSort_m(int arr[], int low, int high, MetricasExecucao *m, int profundidade) {
     m->chamadas_recursivas++;
-    if (profundidade > m->profundidade_maxima)
+    if (profundidade > m->profundidade_maxima) {
         m->profundidade_maxima = profundidade;
+    }
 
     if (low < high) {
         int pi = particionar_m(arr, low, high, m);
@@ -122,56 +121,55 @@ MetricasExecucao medir_quickSort(int arr[], int n) {
     double t0 = tempo_atual_ms();
     quickSort_m(arr, 0, n - 1, &m, 1);
     m.tempo_ms = tempo_atual_ms() - t0;
+    
     return m;
 }
 
 /* =========================================================
-   MERGE SORT INSTRUMENTADO
+   MERGE SORT INSTRUMENTADO 
    ========================================================= */
+static void merge_m(int arr[], int aux[], int left, int mid, int right, MetricasExecucao *m) {
+    int i = left;
+    int j = mid + 1;
+    int k = left;
 
-static void merge_m(int arr[], int left, int mid, int right, MetricasExecucao *m) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    int *L = malloc(n1 * sizeof(int));
-    int *R = malloc(n2 * sizeof(int));
-
-    /* acumula a memória extra alocada para os subarrays temporários */
-    m->memoria_extra_bytes += (long long)(n1 + n2) * sizeof(int);
-
-    for (int i = 0; i < n1; i++) L[i] = arr[left + i];
-    for (int j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
-
-    int i = 0, j = 0, k = left;
-
-    while (i < n1 && j < n2) {
-        m->comparacoes++;
-        if (L[i] <= R[j]) {
-            arr[k++] = L[i++];
-        } else {
-            arr[k++] = R[j++];
-        }
-        m->trocas++; /* cada escrita no array original é uma movimentação */
+    /* Transfere elementos para o array auxiliar (atribuições de suporte) */
+    for (int idx = left; idx <= right; idx++) {
+        aux[idx] = arr[idx];
+        m->trocas++;
     }
 
-    while (i < n1) { arr[k++] = L[i++]; m->trocas++; }
-    while (j < n2) { arr[k++] = R[j++]; m->trocas++; }
+    /* Intercalação ordenada de volta para o vetor principal */
+    while (i <= mid && j <= right) {
+        m->comparacoes++;
+        if (aux[i] <= aux[j]) {
+            arr[k++] = aux[i++];
+        } else {
+            arr[k++] = aux[j++];
+        }
+        m->trocas++;
+    }
 
-    free(L);
-    free(R);
+    while (i <= mid) {
+        arr[k++] = aux[i++];
+        m->trocas++;
+    }
+    while (j <= right) {
+        arr[k++] = aux[j++];
+        m->trocas++;
+    }
 }
 
-static void mergeSort_m(int arr[], int left, int right,
-                         MetricasExecucao *m, int profundidade) {
+static void mergeSort_m(int arr[], int aux[], int left, int right, MetricasExecucao *m, int profundidade) {
     m->chamadas_recursivas++;
     if (profundidade > m->profundidade_maxima)
         m->profundidade_maxima = profundidade;
 
     if (left < right) {
         int mid = left + (right - left) / 2;
-        mergeSort_m(arr, left, mid, m, profundidade + 1);
-        mergeSort_m(arr, mid + 1, right, m, profundidade + 1);
-        merge_m(arr, left, mid, right, m);
+        mergeSort_m(arr, aux, left, mid, m, profundidade + 1);
+        mergeSort_m(arr, aux, mid + 1, right, m, profundidade + 1);
+        merge_m(arr, aux, left, mid, right, m);
     }
 }
 
@@ -180,84 +178,68 @@ MetricasExecucao medir_mergeSort(int arr[], int n) {
     m.estavel = true;
 
     double t0 = tempo_atual_ms();
-    mergeSort_m(arr, 0, n - 1, &m, 1);
+    if (n > 1) {
+        /* Alocação única no Heap para evitar gargalo de chamadas de sistema */
+        int *aux = (int *)malloc(n * sizeof(int));
+        m.memoria_extra_bytes = (long long)n * sizeof(int);
+
+        mergeSort_m(arr, aux, 0, n - 1, &m, 1);
+        free(aux);
+    }
     m.tempo_ms = tempo_atual_ms() - t0;
     return m;
 }
 
 /* =========================================================
-   HEAP SORT INSTRUMENTADO
+   COUNTING SORT INSTRUMENTADO
    ========================================================= */
-
-static void heapify_m(int arr[], int n, int i,
-                       MetricasExecucao *m, int profundidade) {
-    m->chamadas_recursivas++;
-    if (profundidade > m->profundidade_maxima)
-        m->profundidade_maxima = profundidade;
-
-    int largest = i;
-    int left  = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if (left < n) {
-        m->comparacoes++;
-        if (arr[left] > arr[largest]) largest = left;
-    }
-    if (right < n) {
-        m->comparacoes++;
-        if (arr[right] > arr[largest]) largest = right;
-    }
-
-    if (largest != i) {
-        trocar_m(&arr[i], &arr[largest], &m->trocas);
-        heapify_m(arr, n, largest, m, profundidade + 1);
-    }
-}
-
-MetricasExecucao medir_heapSort(int arr[], int n) {
+MetricasExecucao medir_countingSort(int arr[], int n) {
     MetricasExecucao m = {0};
-    m.estavel = false;
+    m.estavel = true; 
+    m.comparacoes = 0; 
 
     double t0 = tempo_atual_ms();
 
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify_m(arr, n, i, &m, 1);
-
-    for (int i = n - 1; i > 0; i--) {
-        trocar_m(&arr[0], &arr[i], &m.trocas);
-        heapify_m(arr, i, 0, &m, 1);
+    if (n <= 1) {
+        m.tempo_ms = tempo_atual_ms() - t0;
+        return m;
     }
 
-    m.tempo_ms = tempo_atual_ms() - t0;
-    return m;
-}
-
-/* =========================================================
-   SHELL SORT INSTRUMENTADO
-   ========================================================= */
-
-MetricasExecucao medir_shellSort(int arr[], int n) {
-    MetricasExecucao m = {0};
-    m.estavel = false;
-
-    double t0 = tempo_atual_ms();
-
-    for (int gap = n / 2; gap > 0; gap /= 2) {
-        for (int i = gap; i < n; i++) {
-            int temp = arr[i];
-            int j;
-            for (j = i; j >= gap; j -= gap) {
-                m.comparacoes++;
-                if (arr[j - gap] > temp) {
-                    arr[j] = arr[j - gap];
-                    m.trocas++;
-                } else {
-                    break;
-                }
-            }
-            arr[j] = temp;
-        }
+    int max = arr[0];
+    int min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) max = arr[i];
+        if (arr[i] < min) min = arr[i];
     }
+
+    int range = max - min + 1;
+
+    int *count = (int *)calloc(range, sizeof(int));
+    int *output = (int *)malloc(n * sizeof(int));
+
+    m.memoria_extra_bytes = (long long)(range + n) * sizeof(int);
+
+    for (int i = 0; i < n; i++) {
+        count[arr[i] - min]++;
+    }
+
+    for (int i = 1; i < range; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i] - min] - 1] = arr[i];
+        count[arr[i] - min]--;
+        m.trocas++; 
+    }
+
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+        m.trocas++; 
+    }
+
+    free(count);
+    free(output);
 
     m.tempo_ms = tempo_atual_ms() - t0;
     return m;
