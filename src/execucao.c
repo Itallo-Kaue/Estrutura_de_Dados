@@ -19,7 +19,7 @@ static void trocar_m(int *a, int *b, long long *trocas) {
     (*trocas)++;
 }
 
-/* /* =========================================================
+/* =========================================================
    INSERTION SORT INSTRUMENTADO
    ========================================================= */
 MetricasExecucao medir_insertionSort(int arr[], int n) {
@@ -80,48 +80,54 @@ MetricasExecucao medir_selectionSort(int arr[], int n) {
 }
 
 /* =========================================================
-   QUICK SORT INSTRUMENTADO (Pivô Fixo: Último Elemento)
+   HEAP SORT INSTRUMENTADO
    ========================================================= */
-static int particionar_m(int arr[], int low, int high, MetricasExecucao *m) {
-    int pivot = arr[high];
-    int i = low - 1;
 
-    for (int j = low; j < high; j++) {
-        m->comparacoes++;
-        if (arr[j] <= pivot) {
-            i++;
-            if (i != j) { /* Trava que evita faturamento falso de trocas */
-                trocar_m(&arr[i], &arr[j], &m->trocas);
-            }
-        }
-    }
-    if ((i + 1) != high) {
-        trocar_m(&arr[i + 1], &arr[high], &m->trocas);
-    }
-    return i + 1;
-}
-
-static void quickSort_m(int arr[], int low, int high, MetricasExecucao *m, int profundidade) {
-    m->chamadas_recursivas++;
-    if (profundidade > m->profundidade_maxima) {
+/* Versão instrumentada do heapify: reconstrói a propriedade de max-heap */
+static void heapify_m(int arr[], int n, int i, MetricasExecucao *m, int profundidade) {
+    if (profundidade > m->profundidade_maxima)
         m->profundidade_maxima = profundidade;
+
+    int maior = i;
+    int esq = 2 * i + 1;
+    int dir = 2 * i + 2;
+
+    if (esq < n) {
+        m->comparacoes++;
+        if (arr[esq] > arr[maior]) maior = esq;
+    }
+    if (dir < n) {
+        m->comparacoes++;
+        if (arr[dir] > arr[maior]) maior = dir;
     }
 
-    if (low < high) {
-        int pi = particionar_m(arr, low, high, m);
-        quickSort_m(arr, low, pi - 1, m, profundidade + 1);
-        quickSort_m(arr, pi + 1, high, m, profundidade + 1);
+    if (maior != i) {
+        trocar_m(&arr[i], &arr[maior], &m->trocas);
+        m->chamadas_recursivas++;
+        heapify_m(arr, n, maior, m, profundidade + 1);
     }
 }
 
-MetricasExecucao medir_quickSort(int arr[], int n) {
+MetricasExecucao medir_heapSort(int arr[], int n) {
     MetricasExecucao m = {0};
     m.estavel = false;
 
     double t0 = tempo_atual_ms();
-    quickSort_m(arr, 0, n - 1, &m, 1);
+
+    /* Fase 1: construção do max-heap (bottom-up) */
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        m.chamadas_recursivas++;
+        heapify_m(arr, n, i, &m, 1);
+    }
+
+    /* Fase 2: extração ordenada — troca raiz com o último e reconstrói heap */
+    for (int i = n - 1; i > 0; i--) {
+        trocar_m(&arr[0], &arr[i], &m.trocas);
+        m.chamadas_recursivas++;
+        heapify_m(arr, i, 0, &m, 1);
+    }
+
     m.tempo_ms = tempo_atual_ms() - t0;
-    
     return m;
 }
 

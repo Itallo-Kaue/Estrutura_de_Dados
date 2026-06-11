@@ -16,7 +16,7 @@ typedef struct {
 
 MetricasExecucao medir_insertionSort(int arr[], int n);
 MetricasExecucao medir_selectionSort(int arr[], int n);
-MetricasExecucao medir_quickSort(int arr[], int n);
+MetricasExecucao medir_heapSort(int arr[], int n);
 MetricasExecucao medir_mergeSort(int arr[], int n);
 MetricasExecucao medir_countingSort(int arr[], int n);
 

@@ -66,9 +66,6 @@ int* ler_arquivo(const char *caminho, int *tamanho_saida) {
     return arr;
 }
 
-const char* decidir_algoritmo(PerfilEntrada p);
-MetricasExecucao executar_com_inteligencia(const char* nome, int* arr, int n);
-
 int main(int argc, char *argv[]) {
     srand(time(NULL));
     // 1. Criar uma lógica para identificar os argumentos:
@@ -114,8 +111,14 @@ int main(int argc, char *argv[]) {
     printf("Amplitude dos Valores    : %lld\n", perfil.amplitude);
     printf("Quantidade de Repetidos  : %d\n", perfil.repetidos);
     printf("Desordem Estimada        : %.2f%%\n", perfil.desordem_estimada_pct);
+    printf("Quase Ordenada           : %s\n", perfil.quase_ordenada ? "Sim" : "Nao");
+    printf("Padroes Sequenciais      : %d\n", perfil.padroes_sequenciais);
     printf("Tamanho Medio dos Runs   : %.2f\n", perfil.tamanho_medio_runs);
     printf("Densidade de Duplicatas  : %.2f%%\n", perfil.densidade_duplicatas);
+    printf("Media dos Valores        : %.2f\n", perfil.media_valores);
+    printf("Tipo de Distribuicao     : %s\n",
+           perfil.tipo_distribuicao < 0 ? "Concentrada nos menores" :
+           perfil.tipo_distribuicao > 0 ? "Concentrada nos maiores" : "Uniforme/equilibrada");
     printf("-------------------------------------------\n\n");
     
     // Aloca vetor de trabalho dinâmico para a execução
@@ -164,10 +167,10 @@ int main(int argc, char *argv[]) {
     m_resultado = medir_selectionSort(dados_teste, tamanho);
     imprimir_metricas("Selection Sort", m_resultado);
 
-    // --- TESTE 3: Quick Sort ---
+    // --- TESTE 3: Heap Sort ---
     resetar_dados(dados_teste, dados_originais, tamanho);
-    m_resultado = medir_quickSort(dados_teste, tamanho);
-    imprimir_metricas("Quick Sort", m_resultado);
+    m_resultado = medir_heapSort(dados_teste, tamanho);
+    imprimir_metricas("Heap Sort", m_resultado);
 
     // --- TESTE 4: Merge Sort ---
     resetar_dados(dados_teste, dados_originais, tamanho);

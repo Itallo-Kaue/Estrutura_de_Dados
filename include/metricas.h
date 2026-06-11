@@ -22,7 +22,7 @@ PerfilEntrada analisar_input(int *input, int tamanho);
 // Algoritmos de Ordenação
 void insertionSort(int arr[], int n);
 void selectionSort(int arr[], int n);
-void quickSort(int arr[], int low, int high);
+void heapSort(int arr[], int n);
 void mergeSort(int arr[], int left, int right);
 void countingSort(int arr[], int n);
 
