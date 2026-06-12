@@ -1,0 +1,4 @@
+adversarial,tamanho,algoritmo_adaptativo,tempo_adaptativo_ms,tempo_insertion_ms,tempo_heap_ms,tempo_merge_ms,tempo_counting_ms,memoria_adaptativo_bytes
+counting,5000,counting,0.3571,0.4431,0.0842,0.4462,0.3326,219996
+insertion,10000,insertion,29.4647,29.4248,2.0529,0.9273,4.9151,0
+limiar,5000,heap,1.1701,20.1838,1.1714,0.7509,0.3188,0
