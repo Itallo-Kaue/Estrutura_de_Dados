@@ -310,3 +310,4 @@ void countingSort(int arr[], int n) {
 
     free(count);
     free(output);
+}

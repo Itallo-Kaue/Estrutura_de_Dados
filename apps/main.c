@@ -6,6 +6,12 @@
 #include "execucao.h"
 #include "decisao.h"
 
+static double obter_tempo_ms_main(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000.0 + ts.tv_nsec / 1.0e6;
+}
+
 void imprimir_array(int *arr, int tamanho) {
     for (int i = 0; i < tamanho; i++) {
         printf("%d ", arr[i]);
@@ -121,7 +127,9 @@ int main(int argc, char *argv[]) {
     }
 
     // Extrair as métricas de perfil da entrada (Parte 2)
+    double t_inicio_analise = obter_tempo_ms_main();
     PerfilEntrada perfil = analisar_input(dados_originais, tamanho);
+    double tempo_overhead_analise = obter_tempo_ms_main() - t_inicio_analise;
 
     printf("===========================================\n");
     printf("         RELATORIO DE PERFIL DA ENTRADA    \n");
@@ -155,8 +163,14 @@ int main(int argc, char *argv[]) {
     if (strcmp(modo, "adaptativo") == 0) {
         printf(">>> MODO ADAPTATIVO ATIVADO <<<\n");
         algoritmo_utilizado = decidir_algoritmo(perfil);
-        printf("Algoritmo selecionado pela heuristica: %s\n\n", algoritmo_utilizado);
+        printf("Algoritmo selecionado pela heuristica: %s\n", algoritmo_utilizado);
+        printf("Tempo gasto na analise (Overhead): %.4f ms\n\n", tempo_overhead_analise);
+        
         m_resultado = executar_com_inteligencia(algoritmo_utilizado, dados_teste, tamanho);
+        
+        // SOMA FINAL: Tempo do Algoritmo + Tempo da Análise
+        m_resultado.tempo_ms += tempo_overhead_analise; 
+        
     } else {
         printf(">>> MODO FIXO ATIVADO <<<\n");
         printf("Algoritmo determinado manualmente: %s\n\n", algoritmo_fixo);
@@ -198,6 +212,11 @@ int main(int argc, char *argv[]) {
     resetar_dados(dados_teste, dados_originais, tamanho);
     m_resultado = medir_countingSort(dados_teste, tamanho);
     imprimir_metricas("Counting Sort", m_resultado);
+
+    // --- TESTE 6: Quick Sort ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_quickSort(dados_teste, tamanho);
+    imprimir_metricas("Quick Sort", m_resultado);
 
     // Liberação de memória alocada dinamicamente
     free(dados_teste);

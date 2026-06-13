@@ -5,18 +5,81 @@ Tamanho do Vetor         : 5000
 Amplitude dos Valores    : 4999
 Quantidade de Repetidos  : 0
 Desordem Estimada        : 100.00%
+Quase Ordenada           : Nao
+Padroes Sequenciais      : 1
 Tamanho Medio dos Runs   : 5000.00
 Densidade de Duplicatas  : 0.00%
+Media dos Valores        : 2500.50
+Tipo de Distribuicao     : Uniforme/equilibrada
 -------------------------------------------
 
 >>> MODO ADAPTATIVO ATIVADO <<<
-Algoritmo selecionado pela heuristica: quick
+Algoritmo selecionado pela heuristica: counting
+Tempo gasto na analise (Overhead): 0.1283 ms
 
 ===========================================
            METRICAS DE EXECUCAO final      
 ===========================================
-  [quick]
-    Tempo de execucao        : 0.3843 ms
+  [counting]
+    Tempo de execucao        : 0.2705 ms
+    Comparacoes              : 0
+    Trocas / movimentacoes   : 10000
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 40000 bytes
+    Estavel                  : Sim
+
+===========================================
+
+--- Metricas de Execucao (Parte 4) ---
+
+  [Insertion Sort Classico]
+    Tempo de execucao        : 54.4574 ms
+    Comparacoes              : 12497500
+    Trocas / movimentacoes   : 12497500
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Sim
+
+  [Selection Sort]
+    Tempo de execucao        : 44.4844 ms
+    Comparacoes              : 12497500
+    Trocas / movimentacoes   : 2500
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+  [Heap Sort]
+    Tempo de execucao        : 2.0091 ms
+    Comparacoes              : 103227
+    Trocas / movimentacoes   : 53436
+    Chamadas recursivas      : 55936
+    Profundidade maxima      : 13
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+  [Merge Sort]
+    Tempo de execucao        : 0.9863 ms
+    Comparacoes              : 29804
+    Trocas / movimentacoes   : 123616
+    Chamadas recursivas      : 9999
+    Profundidade maxima      : 14
+    Memoria extra alocada    : 20000 bytes
+    Estavel                  : Sim
+
+  [Counting Sort]
+    Tempo de execucao        : 0.1136 ms
+    Comparacoes              : 0
+    Trocas / movimentacoes   : 10000
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 40000 bytes
+    Estavel                  : Sim
+
+  [Quick Sort]
+    Tempo de execucao        : 0.4989 ms
     Comparacoes              : 53682
     Trocas / movimentacoes   : 33720
     Chamadas recursivas      : 6551
@@ -24,4 +87,3 @@ Algoritmo selecionado pela heuristica: quick
     Memoria extra alocada    : 0 bytes
     Estavel                  : Nao
 
-===========================================

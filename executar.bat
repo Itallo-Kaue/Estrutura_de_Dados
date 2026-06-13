@@ -17,8 +17,7 @@ echo  A INICIAR BATERIA DE EXPERIMENTOS (MODO ADAPTATIVO)
 echo ==========================================================
 
 REM Lista de todos os ficheiros de teste gerados
-set datasets=aleatoria_1.txt aleatoria_2.txt quase_ordenada_1.txt quase_ordenada_2.txt reversa_1.txt reversa_2.txt repetidos_1.txt repetidos_2.txt pequena_1.txt pequena_2.txt grande_1.txt grande_2.txt adversarial_falso_counting.txt adversarial_destruidor_insertion.txt
-
+set datasets= adv_counting.txt adv_heap.txt adv_insertion.txt adv_merge.txt adv_quick.txt adv_selection.txt ideal_counting.txt ideal_heap.txt ideal_insertion.txt ideal_merge.txt ideal_quick.txt ideal_selection.txt aleatoria_1.txt aleatoria_2.txt quase_ordenada_1.txt quase_ordenada_2.txt reversa_1.txt reversa_2.txt repetidos_1.txt repetidos_2.txt pequena_1.txt pequena_2.txt grande_1.txt grande_2.txt
 REM Loop que testa o sistema adaptativo para cada ficheiro
 for %%i in (%datasets%) do (
     echo A executar Modo Adaptativo para: %%i

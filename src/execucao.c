@@ -244,54 +244,6 @@ MetricasExecucao medir_mergeSort(int arr[], int n) {
     return m;
 }
         
-
-/* =========================================================
-   HEAP SORT INSTRUMENTADO
-   ========================================================= */
-
-static void heapify_m(int arr[], int n, int i,
-                       MetricasExecucao *m, int profundidade) {
-    m->chamadas_recursivas++;
-    if (profundidade > m->profundidade_maxima)
-        m->profundidade_maxima = profundidade;
-
-    int largest = i;
-    int left  = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if (left < n) {
-        m->comparacoes++;
-        if (arr[left] > arr[largest]) largest = left;
-    }
-    if (right < n) {
-        m->comparacoes++;
-        if (arr[right] > arr[largest]) largest = right;
-    }
-
-    if (largest != i) {
-        trocar_m(&arr[i], &arr[largest], &m->trocas);
-        heapify_m(arr, n, largest, m, profundidade + 1);
-    }
-}
-
-MetricasExecucao medir_heapSort(int arr[], int n) {
-    MetricasExecucao m = {0};
-    m.estavel = false;
-
-    double t0 = tempo_atual_ms();
-
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify_m(arr, n, i, &m, 1);
-
-    for (int i = n - 1; i > 0; i--) {
-        trocar_m(&arr[0], &arr[i], &m.trocas);
-        heapify_m(arr, i, 0, &m, 1);
-    }
-
-    m.tempo_ms = tempo_atual_ms() - t0;
-    return m;
-}
-
 /* =========================================================
    COUNTING SORT INSTRUMENTADO
    ========================================================= */
@@ -345,6 +297,7 @@ MetricasExecucao medir_countingSort(int arr[], int n) {
     m.tempo_ms = tempo_atual_ms() - t0;
     return m;
 }
+
 
 /* =========================================================
    IMPRESSÃO DAS MÉTRICAS

@@ -7,16 +7,29 @@
 /* Seleciona o algoritmo mais adequado com base no perfil da entrada.
    Ordem de prioridade das regras: do caso mais específico ao mais geral. */
 const char* decidir_algoritmo(PerfilEntrada p) {
-    /* Counting Sort é vantajoso apenas quando a amplitude é pequena em termos
-       absolutos E proporcionalmente ao tamanho, evitando desperdício de memória */
-    if (p.amplitude > 0 && p.amplitude < 100000 && p.amplitude < (long long)(10 * p.tamanho)) {
-        return "counting";
-    }
-    
      /* Insertion Sort é ideal para entradas pequenas ou quase ordenadas,
        pois tem baixo overhead e aproveita a ordem existente */
-    if (p.tamanho < 50 || p.quase_ordenada) {
+    if (p.tamanho < 50) {
         return "insertion";
+    }
+    if (p.quase_ordenada) {
+    // Se o vetor for pequeno, 5% de desordem resolve-se bem
+    if (p.tamanho < 10000) {
+        return "insertion";
+    } 
+    // Se for GIGANTE, só usamos o Insertion se a desordem for microscópica (< 0.1%)
+    else if (p.desordem_estimada < 0.1) {
+        return "insertion";
+    }
+    // Se for gigante e "mais ou menos" desordenado, fugimos para o Merge Sort!
+    else {
+        return "merge"; 
+    }
+}
+    /* Counting Sort é vantajoso apenas quando a amplitude é pequena em termos
+       absolutos E proporcionalmente ao tamanho, evitando desperdício de memória */
+    if (p.amplitude > 0 && p.amplitude < 100000 && p.amplitude < (long long)(2 * p.tamanho)) {
+        return "counting";
     }
     /* Selection Sort minimiza o número de trocas, útil quando movimentação é 
        custos. Ideal para entradas médias sem características especiais,  */
@@ -50,7 +63,7 @@ MetricasExecucao executar_com_inteligencia(const char* nome, int* arr, int n) {
     if (strcmp(nome, "insertion") == 0) {
         m = medir_insertionSort(arr, n);
     } else if (strcmp(nome, "selection") == 0) {
-        m = medir_selectionSort(arr, n)
+        m = medir_selectionSort(arr, n);
     } else if (strcmp(nome, "quick") == 0) {
         m = medir_quickSort(arr, n);
     } else if (strcmp(nome, "merge") == 0) {

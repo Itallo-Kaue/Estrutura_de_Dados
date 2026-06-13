@@ -2,26 +2,88 @@
          RELATORIO DE PERFIL DA ENTRADA    
 ===========================================
 Tamanho do Vetor         : 15000
-Amplitude dos Valores    : 50000
-Quantidade de Repetidos  : 2014
-Desordem Estimada        : 50.08%
-Tamanho Medio dos Runs   : 1.52
-Densidade de Duplicatas  : 13.43%
+Amplitude dos Valores    : 49986
+Quantidade de Repetidos  : 2026
+Desordem Estimada        : 49.88%
+Quase Ordenada           : Nao
+Padroes Sequenciais      : 10075
+Tamanho Medio dos Runs   : 1.49
+Densidade de Duplicatas  : 13.51%
+Media dos Valores        : 24974.92
+Tipo de Distribuicao     : Uniforme/equilibrada
 -------------------------------------------
 
 >>> MODO ADAPTATIVO ATIVADO <<<
 Algoritmo selecionado pela heuristica: quick
+Tempo gasto na analise (Overhead): 0.6661 ms
 
 ===========================================
            METRICAS DE EXECUCAO final      
 ===========================================
   [quick]
-    Tempo de execucao        : 2.1440 ms
-    Comparacoes              : 236389
-    Trocas / movimentacoes   : 138802
-    Chamadas recursivas      : 20029
-    Profundidade maxima      : 37
+    Tempo de execucao        : 3.9057 ms
+    Comparacoes              : 244479
+    Trocas / movimentacoes   : 139607
+    Chamadas recursivas      : 20017
+    Profundidade maxima      : 32
     Memoria extra alocada    : 0 bytes
     Estavel                  : Nao
 
 ===========================================
+
+--- Metricas de Execucao (Parte 4) ---
+
+  [Insertion Sort Classico]
+    Tempo de execucao        : 254.2486 ms
+    Comparacoes              : 56367258
+    Trocas / movimentacoes   : 56352266
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Sim
+
+  [Selection Sort]
+    Tempo de execucao        : 412.8429 ms
+    Comparacoes              : 112492500
+    Trocas / movimentacoes   : 14983
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+  [Heap Sort]
+    Tempo de execucao        : 5.4584 ms
+    Comparacoes              : 370468
+    Trocas / movimentacoes   : 194993
+    Chamadas recursivas      : 202493
+    Profundidade maxima      : 14
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+  [Merge Sort]
+    Tempo de execucao        : 3.4391 ms
+    Comparacoes              : 189299
+    Trocas / movimentacoes   : 417232
+    Chamadas recursivas      : 29999
+    Profundidade maxima      : 15
+    Memoria extra alocada    : 60000 bytes
+    Estavel                  : Sim
+
+  [Counting Sort]
+    Tempo de execucao        : 0.5625 ms
+    Comparacoes              : 0
+    Trocas / movimentacoes   : 30000
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 259948 bytes
+    Estavel                  : Sim
+
+  [Quick Sort]
+    Tempo de execucao        : 2.6680 ms
+    Comparacoes              : 244479
+    Trocas / movimentacoes   : 139607
+    Chamadas recursivas      : 20017
+    Profundidade maxima      : 32
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
