@@ -20,7 +20,7 @@ Algoritmo determinado manualmente: selection
            METRICAS DE EXECUCAO            
 ===========================================
   [selection]
-    Tempo de execucao        : 47.9729 ms
+    Tempo de execucao        : 50.5815 ms
     Comparacoes              : 12497500
     Trocas / movimentacoes   : 4990
     Chamadas recursivas      : 0
@@ -33,7 +33,7 @@ Algoritmo determinado manualmente: selection
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 36.8696 ms
+    Tempo de execucao        : 24.9470 ms
     Comparacoes              : 6172789
     Trocas / movimentacoes   : 6167795
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo determinado manualmente: selection
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 56.4068 ms
+    Tempo de execucao        : 41.8534 ms
     Comparacoes              : 12497500
     Trocas / movimentacoes   : 4990
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo determinado manualmente: selection
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 2.5180 ms
+    Tempo de execucao        : 1.0464 ms
     Comparacoes              : 107604
     Trocas / movimentacoes   : 57086
     Chamadas recursivas      : 59586
@@ -60,7 +60,7 @@ Algoritmo determinado manualmente: selection
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 2.0172 ms
+    Tempo de execucao        : 0.7470 ms
     Comparacoes              : 55192
     Trocas / movimentacoes   : 123616
     Chamadas recursivas      : 9999
@@ -69,7 +69,7 @@ Algoritmo determinado manualmente: selection
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.3796 ms
+    Tempo de execucao        : 0.2128 ms
     Comparacoes              : 9998
     Trocas / movimentacoes   : 10000
     Chamadas recursivas      : 0

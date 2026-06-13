@@ -20,7 +20,7 @@ Algoritmo determinado manualmente: heap
            METRICAS DE EXECUCAO            
 ===========================================
   [heap]
-    Tempo de execucao        : 1.5915 ms
+    Tempo de execucao        : 1.2685 ms
     Comparacoes              : 107604
     Trocas / movimentacoes   : 57086
     Chamadas recursivas      : 59586
@@ -33,7 +33,7 @@ Algoritmo determinado manualmente: heap
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 36.3801 ms
+    Tempo de execucao        : 30.4821 ms
     Comparacoes              : 6172789
     Trocas / movimentacoes   : 6167795
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo determinado manualmente: heap
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 50.5123 ms
+    Tempo de execucao        : 36.8685 ms
     Comparacoes              : 12497500
     Trocas / movimentacoes   : 4990
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo determinado manualmente: heap
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 1.6202 ms
+    Tempo de execucao        : 1.1666 ms
     Comparacoes              : 107604
     Trocas / movimentacoes   : 57086
     Chamadas recursivas      : 59586
@@ -60,7 +60,7 @@ Algoritmo determinado manualmente: heap
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 4.3016 ms
+    Tempo de execucao        : 0.7154 ms
     Comparacoes              : 55192
     Trocas / movimentacoes   : 123616
     Chamadas recursivas      : 9999
@@ -69,7 +69,7 @@ Algoritmo determinado manualmente: heap
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.5183 ms
+    Tempo de execucao        : 0.1803 ms
     Comparacoes              : 9998
     Trocas / movimentacoes   : 10000
     Chamadas recursivas      : 0

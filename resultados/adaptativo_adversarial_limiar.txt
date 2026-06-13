@@ -14,26 +14,26 @@ Tipo de Distribuicao     : Concentrada nos menores
 -------------------------------------------
 
 >>> MODO ADAPTATIVO ATIVADO <<<
-Algoritmo selecionado pela heuristica: heap
+Algoritmo selecionado pela heuristica: counting
 
 ===========================================
            METRICAS DE EXECUCAO            
 ===========================================
-  [heap]
-    Tempo de execucao        : 1.6578 ms
-    Comparacoes              : 107605
-    Trocas / movimentacoes   : 57080
-    Chamadas recursivas      : 59580
-    Profundidade maxima      : 13
-    Memoria extra alocada    : 0 bytes
-    Estavel                  : Nao
+  [counting]
+    Tempo de execucao        : 0.2167 ms
+    Comparacoes              : 9998
+    Trocas / movimentacoes   : 10000
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 220004 bytes
+    Estavel                  : Sim
 
 ===========================================
 
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 40.8886 ms
+    Tempo de execucao        : 20.2260 ms
     Comparacoes              : 6332411
     Trocas / movimentacoes   : 6327420
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo selecionado pela heuristica: heap
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 49.2295 ms
+    Tempo de execucao        : 34.5629 ms
     Comparacoes              : 12497500
     Trocas / movimentacoes   : 4989
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo selecionado pela heuristica: heap
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 1.4067 ms
+    Tempo de execucao        : 4.5363 ms
     Comparacoes              : 107605
     Trocas / movimentacoes   : 57080
     Chamadas recursivas      : 59580
@@ -60,7 +60,7 @@ Algoritmo selecionado pela heuristica: heap
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 0.7728 ms
+    Tempo de execucao        : 0.9479 ms
     Comparacoes              : 55250
     Trocas / movimentacoes   : 123616
     Chamadas recursivas      : 9999
@@ -69,7 +69,7 @@ Algoritmo selecionado pela heuristica: heap
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.2981 ms
+    Tempo de execucao        : 0.3602 ms
     Comparacoes              : 9998
     Trocas / movimentacoes   : 10000
     Chamadas recursivas      : 0

@@ -14,18 +14,18 @@ Tipo de Distribuicao     : Concentrada nos menores
 -------------------------------------------
 
 >>> MODO ADAPTATIVO ATIVADO <<<
-Algoritmo selecionado pela heuristica: insertion
+Algoritmo selecionado pela heuristica: merge
 
 ===========================================
            METRICAS DE EXECUCAO            
 ===========================================
-  [insertion]
-    Tempo de execucao        : 32.2195 ms
-    Comparacoes              : 9009998
-    Trocas / movimentacoes   : 9000000
-    Chamadas recursivas      : 0
-    Profundidade maxima      : 0
-    Memoria extra alocada    : 0 bytes
+  [merge]
+    Tempo de execucao        : 0.7956 ms
+    Comparacoes              : 75407
+    Trocas / movimentacoes   : 267232
+    Chamadas recursivas      : 19999
+    Profundidade maxima      : 15
+    Memoria extra alocada    : 40000 bytes
     Estavel                  : Sim
 
 ===========================================
@@ -33,7 +33,7 @@ Algoritmo selecionado pela heuristica: insertion
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 35.0209 ms
+    Tempo de execucao        : 33.4597 ms
     Comparacoes              : 9009998
     Trocas / movimentacoes   : 9000000
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo selecionado pela heuristica: insertion
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 149.9816 ms
+    Tempo de execucao        : 170.7200 ms
     Comparacoes              : 49995000
     Trocas / movimentacoes   : 9000
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo selecionado pela heuristica: insertion
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 1.8426 ms
+    Tempo de execucao        : 2.1514 ms
     Comparacoes              : 228656
     Trocas / movimentacoes   : 121294
     Chamadas recursivas      : 126294
@@ -60,7 +60,7 @@ Algoritmo selecionado pela heuristica: insertion
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 0.8374 ms
+    Tempo de execucao        : 3.7921 ms
     Comparacoes              : 75407
     Trocas / movimentacoes   : 267232
     Chamadas recursivas      : 19999
@@ -69,7 +69,7 @@ Algoritmo selecionado pela heuristica: insertion
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.8775 ms
+    Tempo de execucao        : 0.9919 ms
     Comparacoes              : 19998
     Trocas / movimentacoes   : 20000
     Chamadas recursivas      : 0

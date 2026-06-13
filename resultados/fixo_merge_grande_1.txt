@@ -20,7 +20,7 @@ Algoritmo determinado manualmente: merge
            METRICAS DE EXECUCAO            
 ===========================================
   [merge]
-    Tempo de execucao        : 13.3355 ms
+    Tempo de execucao        : 16.6772 ms
     Comparacoes              : 718238
     Trocas / movimentacoes   : 1568928
     Chamadas recursivas      : 99999
@@ -33,7 +33,7 @@ Algoritmo determinado manualmente: merge
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 4001.9910 ms
+    Tempo de execucao        : 2872.9433 ms
     Comparacoes              : 626593365
     Trocas / movimentacoes   : 626543373
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo determinado manualmente: merge
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 4548.0146 ms
+    Tempo de execucao        : 3217.0456 ms
     Comparacoes              : 1249975000
     Trocas / movimentacoes   : 49988
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo determinado manualmente: merge
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 18.1446 ms
+    Tempo de execucao        : 16.2905 ms
     Comparacoes              : 1409811
     Trocas / movimentacoes   : 737397
     Chamadas recursivas      : 762397
@@ -60,7 +60,7 @@ Algoritmo determinado manualmente: merge
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 10.6612 ms
+    Tempo de execucao        : 9.3659 ms
     Comparacoes              : 718238
     Trocas / movimentacoes   : 1568928
     Chamadas recursivas      : 99999
@@ -69,7 +69,7 @@ Algoritmo determinado manualmente: merge
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.7611 ms
+    Tempo de execucao        : 0.8592 ms
     Comparacoes              : 99998
     Trocas / movimentacoes   : 100000
     Chamadas recursivas      : 0

@@ -20,7 +20,7 @@ Algoritmo determinado manualmente: insertion
            METRICAS DE EXECUCAO            
 ===========================================
   [insertion]
-    Tempo de execucao        : 144.9559 ms
+    Tempo de execucao        : 104.8176 ms
     Comparacoes              : 24855183
     Trocas / movimentacoes   : 24845189
     Chamadas recursivas      : 0
@@ -33,7 +33,7 @@ Algoritmo determinado manualmente: insertion
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 109.6556 ms
+    Tempo de execucao        : 132.6628 ms
     Comparacoes              : 24855183
     Trocas / movimentacoes   : 24845189
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo determinado manualmente: insertion
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 182.0409 ms
+    Tempo de execucao        : 153.5630 ms
     Comparacoes              : 49995000
     Trocas / movimentacoes   : 9991
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo determinado manualmente: insertion
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 5.6472 ms
+    Tempo de execucao        : 2.5550 ms
     Comparacoes              : 235266
     Trocas / movimentacoes   : 124133
     Chamadas recursivas      : 129133
@@ -60,7 +60,7 @@ Algoritmo determinado manualmente: insertion
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 1.8465 ms
+    Tempo de execucao        : 4.9961 ms
     Comparacoes              : 120439
     Trocas / movimentacoes   : 267232
     Chamadas recursivas      : 19999
@@ -69,7 +69,7 @@ Algoritmo determinado manualmente: insertion
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.3396 ms
+    Tempo de execucao        : 0.2839 ms
     Comparacoes              : 19998
     Trocas / movimentacoes   : 20000
     Chamadas recursivas      : 0

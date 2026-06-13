@@ -20,7 +20,7 @@ Algoritmo selecionado pela heuristica: selection
            METRICAS DE EXECUCAO            
 ===========================================
   [selection]
-    Tempo de execucao        : 0.0579 ms
+    Tempo de execucao        : 0.0619 ms
     Comparacoes              : 19900
     Trocas / movimentacoes   : 188
     Chamadas recursivas      : 0
@@ -33,7 +33,7 @@ Algoritmo selecionado pela heuristica: selection
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 0.0353 ms
+    Tempo de execucao        : 0.0345 ms
     Comparacoes              : 10093
     Trocas / movimentacoes   : 9894
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo selecionado pela heuristica: selection
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 0.0570 ms
+    Tempo de execucao        : 0.0576 ms
     Comparacoes              : 19900
     Trocas / movimentacoes   : 188
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo selecionado pela heuristica: selection
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 0.0292 ms
+    Tempo de execucao        : 0.0301 ms
     Comparacoes              : 2431
     Trocas / movimentacoes   : 1360
     Chamadas recursivas      : 1460
@@ -60,7 +60,7 @@ Algoritmo selecionado pela heuristica: selection
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 0.0258 ms
+    Tempo de execucao        : 0.0237 ms
     Comparacoes              : 1268
     Trocas / movimentacoes   : 3088
     Chamadas recursivas      : 399
@@ -69,7 +69,7 @@ Algoritmo selecionado pela heuristica: selection
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.0882 ms
+    Tempo de execucao        : 0.1028 ms
     Comparacoes              : 398
     Trocas / movimentacoes   : 400
     Chamadas recursivas      : 0

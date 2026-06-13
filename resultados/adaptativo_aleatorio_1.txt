@@ -20,7 +20,7 @@ Algoritmo selecionado pela heuristica: counting
            METRICAS DE EXECUCAO            
 ===========================================
   [counting]
-    Tempo de execucao        : 0.1345 ms
+    Tempo de execucao        : 0.1804 ms
     Comparacoes              : 9998
     Trocas / movimentacoes   : 10000
     Chamadas recursivas      : 0
@@ -33,7 +33,7 @@ Algoritmo selecionado pela heuristica: counting
 --- Metricas de Execucao (Parte 4) ---
 
   [Insertion Sort]
-    Tempo de execucao        : 21.2980 ms
+    Tempo de execucao        : 21.4027 ms
     Comparacoes              : 6172789
     Trocas / movimentacoes   : 6167795
     Chamadas recursivas      : 0
@@ -42,7 +42,7 @@ Algoritmo selecionado pela heuristica: counting
     Estavel                  : Sim
 
   [Selection Sort]
-    Tempo de execucao        : 37.2730 ms
+    Tempo de execucao        : 38.6266 ms
     Comparacoes              : 12497500
     Trocas / movimentacoes   : 4990
     Chamadas recursivas      : 0
@@ -51,7 +51,7 @@ Algoritmo selecionado pela heuristica: counting
     Estavel                  : Nao
 
   [Heap Sort]
-    Tempo de execucao        : 1.1890 ms
+    Tempo de execucao        : 0.9563 ms
     Comparacoes              : 107604
     Trocas / movimentacoes   : 57086
     Chamadas recursivas      : 59586
@@ -60,7 +60,7 @@ Algoritmo selecionado pela heuristica: counting
     Estavel                  : Nao
 
   [Merge Sort]
-    Tempo de execucao        : 1.1819 ms
+    Tempo de execucao        : 0.6456 ms
     Comparacoes              : 55192
     Trocas / movimentacoes   : 123616
     Chamadas recursivas      : 9999
@@ -69,7 +69,7 @@ Algoritmo selecionado pela heuristica: counting
     Estavel                  : Sim
 
   [Counting Sort]
-    Tempo de execucao        : 0.2084 ms
+    Tempo de execucao        : 0.1766 ms
     Comparacoes              : 9998
     Trocas / movimentacoes   : 10000
     Chamadas recursivas      : 0
