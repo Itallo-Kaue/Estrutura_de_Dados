@@ -1,0 +1,79 @@
+===========================================
+         RELATORIO DE PERFIL DA ENTRADA    
+===========================================
+Tamanho do Vetor         : 8000
+Amplitude dos Valores    : 2
+Quantidade de Repetidos  : 7997
+Desordem Estimada        : 32.78%
+Quase Ordenada           : Nao
+Padroes Sequenciais      : 4363
+Tamanho Medio dos Runs   : 1.83
+Densidade de Duplicatas  : 99.96%
+Media dos Valores        : 1.98
+Tipo de Distribuicao     : Uniforme/equilibrada
+-------------------------------------------
+
+>>> MODO ADAPTATIVO ATIVADO <<<
+Algoritmo selecionado pela heuristica: counting
+
+===========================================
+           METRICAS DE EXECUCAO            
+===========================================
+  [counting]
+    Tempo de execucao        : 0.1279 ms
+    Comparacoes              : 0
+    Trocas / movimentacoes   : 16000
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 32012 bytes
+    Estavel                  : Sim
+
+===========================================
+
+--- Metricas de Execucao (Parte 4) ---
+
+  [Insertion Sort]
+    Tempo de execucao        : 45.5982 ms
+    Comparacoes              : 10941001
+    Trocas / movimentacoes   : 10933003
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Sim
+
+  [Selection Sort]
+    Tempo de execucao        : 97.8367 ms
+    Comparacoes              : 31996000
+    Trocas / movimentacoes   : 5380
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+  [Heap Sort]
+    Tempo de execucao        : 0.9846 ms
+    Comparacoes              : 124983
+    Trocas / movimentacoes   : 62097
+    Chamadas recursivas      : 66097
+    Profundidade maxima      : 13
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+  [Merge Sort]
+    Tempo de execucao        : 0.8338 ms
+    Comparacoes              : 82092
+    Trocas / movimentacoes   : 207616
+    Chamadas recursivas      : 15999
+    Profundidade maxima      : 14
+    Memoria extra alocada    : 32000 bytes
+    Estavel                  : Sim
+
+  [Counting Sort]
+    Tempo de execucao        : 0.0898 ms
+    Comparacoes              : 0
+    Trocas / movimentacoes   : 16000
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 32012 bytes
+    Estavel                  : Sim
+
