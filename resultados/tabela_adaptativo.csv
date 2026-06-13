@@ -1,1 +1,16 @@
 dataset,n_elementos,algoritmo_selecionado,tempo(ms),comparacoes,trocas,memoria(bytes),desordem(%),duplicatas(%)
+pequena_1,100,selection,0.0176,4950,91,0,55.56,0.00
+pequena_2,200,selection,0.0579,19900,188,0,53.27,0.00
+adversarial_counting,5000,counting,0.3168,9998,10000,219996,0.96,99.96
+adversarial_limiar,5000,heap,1.6578,107605,57080,0,49.71,7.48
+aleatorio_1,5000,counting,0.1345,9998,10000,151032,50.09,7.48
+quase_ordenada_1,5000,counting,0.1144,9998,10000,40000,3.82,0.00
+repetidos_1,5000,counting,0.0752,9998,10000,20040,44.73,99.80
+reverso_1,5000,counting,0.1639,9998,10000,40000,100.00,0.00
+adversarial_insertion,10000,insertion,32.2195,9009998,9000000,0,0.01,0.00
+aleatorio_2,10000,counting,0.2745,19998,20000,171032,50.18,13.84
+quase_ordenada_2,10000,counting,0.1487,19998,20000,80000,3.86,0.00
+repetidos_2,10000,counting,0.1084,19998,20000,40040,44.89,99.90
+reverso_2,10000,counting,0.5308,19998,20000,80000,100.00,0.00
+grande_1,50000,counting,1.2066,99998,100000,331072,50.20,48.87
+grande_2,250000,heap,82.7410,8198658,4262580,0,50.08,11.51

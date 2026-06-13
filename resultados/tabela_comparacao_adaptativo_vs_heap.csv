@@ -1,1 +1,10 @@
 dataset,n_elementos,algoritmo_adaptativo,t_adaptativo(ms),t_heap_fixo(ms),diferenca_pct
+adversarial_counting,5000,counting,0.3168,0.1148,-176.0
+adversarial_limiar,5000,heap,1.6578,1.5960,-3.9
+aleatorio_1,5000,counting,0.1345,1.5915,91.5
+quase_ordenada_1,5000,counting,0.1144,3.4909,96.7
+repetidos_1,5000,counting,0.0752,1.3068,94.2
+reverso_1,5000,counting,0.1639,1.3336,87.7
+adversarial_insertion,10000,insertion,32.2195,5.4076,-495.8
+aleatorio_2,10000,counting,0.2745,4.8605,94.4
+grande_1,50000,counting,1.2066,26.2053,95.4

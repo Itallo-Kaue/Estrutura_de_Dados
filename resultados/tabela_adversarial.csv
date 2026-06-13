@@ -1,1 +1,4 @@
 caso_adversarial,n_elementos,algoritmo_adaptativo,t_adaptativo(ms),t_insertion(ms),t_heap(ms),t_merge(ms),t_counting(ms),memoria_adaptativo(bytes)
+counting,5000,counting,0.3168,0.5390,0.1148,0.8229,0.3131,219996
+insertion,10000,insertion,32.2195,27.8890,5.4076,1.2229,1.2989,0
+limiar,5000,heap,1.6578,29.5854,1.5960,1.1144,0.3245,0
