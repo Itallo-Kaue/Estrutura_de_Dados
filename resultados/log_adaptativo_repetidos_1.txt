@@ -16,7 +16,7 @@ Algoritmo selecionado pela heuristica: merge
            METRICAS DE EXECUCAO final      
 ===========================================
   [merge]
-    Tempo de execucao        : 2.3114 ms
+    Tempo de execucao        : 1.8173 ms
     Comparacoes              : 82092
     Trocas / movimentacoes   : 103808
     Chamadas recursivas      : 15999

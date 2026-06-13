@@ -16,7 +16,7 @@ Algoritmo selecionado pela heuristica: insertion
            METRICAS DE EXECUCAO final      
 ===========================================
   [insertion]
-    Tempo de execucao        : 0.0013 ms
+    Tempo de execucao        : 0.0012 ms
     Comparacoes              : 230
     Trocas / movimentacoes   : 202
     Chamadas recursivas      : 0

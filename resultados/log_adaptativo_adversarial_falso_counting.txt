@@ -16,7 +16,7 @@ Algoritmo selecionado pela heuristica: insertion2_0
            METRICAS DE EXECUCAO final      
 ===========================================
   [insertion2_0]
-    Tempo de execucao        : 0.9899 ms
+    Tempo de execucao        : 0.9923 ms
     Comparacoes              : 142674
     Trocas / movimentacoes   : 137675
     Chamadas recursivas      : 0

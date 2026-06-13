@@ -18,20 +18,27 @@ const char* decidir_algoritmo(PerfilEntrada p) {
     if (p.tamanho < 50 || p.quase_ordenada) {
         return "insertion";
     }
+    /* Selection Sort minimiza o número de trocas, útil quando movimentação é 
+       custos. Ideal para entradas médias sem características especiais,  */
+    if (p.tamanho <= 200) {
+        return "selection";
+    }
     /* Merge Sort lida bem com muitos duplicatas por ser estável e não
        degradar com elementos iguais, ao contrário do Heap Sort */
     if (p.densidade_duplicatas > 50.0) {
         return "merge";
     }
-    /* Heap Sort garante O(n log n) no pior caso com memória O(1),
-       sendo a escolha segura para entradas grandes e desconhecidas */
+    /* Quick Sort garante O(n log n) em casos médios e garante constantes operacionais
+       pequenos. É o mais indicado para dados grandes com distribuição aleatório por ser 
+       o mais rápido */
     if (p.tamanho >= 1000) {
-        return "heap";
+        return "quick";
     }
 
-    /* Para entradas médias sem características especiais, Selection Sort
-       minimiza o número de trocas, útil quando movimentação é custosa */
-    return "selection";
+    /*Heap Sort garante sempre O(n log n) em todos os casos, prevenindo o sistema ter
+      pico de memórias e tempos de execução gigantes. Ideal para ser um rede de seguração
+      para o Sistema Adaptivo*/
+    return "heap";
     //ATENÇÃO ARRUMAR ESSA LÓGICA, PARECE ERRADA
 
 }

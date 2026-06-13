@@ -16,7 +16,7 @@ Algoritmo selecionado pela heuristica: quick
            METRICAS DE EXECUCAO final      
 ===========================================
   [quick]
-    Tempo de execucao        : 2.4592 ms
+    Tempo de execucao        : 2.1440 ms
     Comparacoes              : 236389
     Trocas / movimentacoes   : 138802
     Chamadas recursivas      : 20029
