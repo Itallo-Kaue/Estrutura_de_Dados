@@ -1,0 +1,27 @@
+===========================================
+         RELATORIO DE PERFIL DA ENTRADA    
+===========================================
+Tamanho do Vetor         : 250000
+Amplitude dos Valores    : 999991
+Quantidade de Repetidos  : 28776
+Desordem Estimada        : 50.08%
+Tamanho Medio dos Runs   : 1.50
+Densidade de Duplicatas  : 11.51%
+-------------------------------------------
+
+>>> MODO FIXO ATIVADO <<<
+Algoritmo determinado manualmente: quick
+
+===========================================
+           METRICAS DE EXECUCAO final      
+===========================================
+  [quick]
+    Tempo de execucao        : 58.6221 ms
+    Comparacoes              : 5576401
+    Trocas / movimentacoes   : 3090423
+    Chamadas recursivas      : 333995
+    Profundidade maxima      : 47
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Nao
+
+===========================================

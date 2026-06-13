@@ -1,0 +1,27 @@
+===========================================
+         RELATORIO DE PERFIL DA ENTRADA    
+===========================================
+Tamanho do Vetor         : 20000
+Amplitude dos Valores    : 100
+Quantidade de Repetidos  : 19899
+Desordem Estimada        : 4.88%
+Tamanho Medio dos Runs   : 10.49
+Densidade de Duplicatas  : 99.50%
+-------------------------------------------
+
+>>> MODO ADAPTATIVO ATIVADO <<<
+Algoritmo selecionado pela heuristica: insertion2_0
+
+===========================================
+           METRICAS DE EXECUCAO final      
+===========================================
+  [insertion2_0]
+    Tempo de execucao        : 81.5342 ms
+    Comparacoes              : 9723013
+    Trocas / movimentacoes   : 9703014
+    Chamadas recursivas      : 0
+    Profundidade maxima      : 0
+    Memoria extra alocada    : 0 bytes
+    Estavel                  : Sim
+
+===========================================
