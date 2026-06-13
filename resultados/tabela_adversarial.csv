@@ -1,0 +1,1 @@
+caso_adversarial,n_elementos,algoritmo_adaptativo,t_adaptativo(ms),t_insertion(ms),t_heap(ms),t_merge(ms),t_counting(ms),memoria_adaptativo(bytes)
