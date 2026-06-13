@@ -6,6 +6,12 @@
 #include "execucao.h"
 #include "decisao.h"
 
+static double obter_tempo_ms_main(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000.0 + ts.tv_nsec / 1.0e6;
+}
+
 void imprimir_array(int *arr, int tamanho) {
     for (int i = 0; i < tamanho; i++) {
         printf("%d ", arr[i]);
@@ -66,8 +72,8 @@ int* ler_arquivo(const char *caminho, int *tamanho_saida) {
     return arr;
 }
 
-const char* decidir_algoritmo(PerfilEntrada p);
-MetricasExecucao executar_com_inteligencia(const char* nome, int* arr, int n);
+/*const char* decidir_algoritmo(PerfilEntrada p);
+MetricasExecucao executar_com_inteligencia(const char* nome, int* arr, int n); */
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
@@ -76,7 +82,7 @@ int main(int argc, char *argv[]) {
     char *caminho_input = NULL;
     char *modo = "adaptativo"; // Modo padrão solicitado pelo PDF
     char *algoritmo_fixo = "quick"; // Algoritmo fixo padrão
-    int tamanho_gerar = 0;
+    /*int tamanho_gerar = 0;*/
 
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--modo") == 0 && i + 1 < argc) {
@@ -84,6 +90,9 @@ int main(int argc, char *argv[]) {
         }
         if (strcmp(argv[i], "--input") == 0 && i + 1 < argc) {
             caminho_input = argv[i + 1];
+        }
+        if (strcmp(argv[i], "--algoritmo") == 0 && i + 1 < argc) {
+            algoritmo_fixo = argv[i + 1];
         }
     }
 
@@ -96,7 +105,7 @@ int main(int argc, char *argv[]) {
     int *dados_originais = NULL;
     int tamanho = 0;
 
-    // Definição da fonte de dados de entrada
+    /* Definição da fonte de dados de entrada
     if (caminho_input != NULL) {
         dados_originais = ler_arquivo(caminho_input, &tamanho);
         if (!dados_originais) return 1;
@@ -110,11 +119,17 @@ int main(int argc, char *argv[]) {
         int arr_padrao[] = {10, 2, 5, 5, 2, 8, 9, 1, 100};
         tamanho = sizeof(arr_padrao) / sizeof(arr_padrao[0]);
         dados_originais = malloc(tamanho * sizeof(int));
-        resetar_dados(dados_originais, arr_padrao, tamanho);
+        resetar_dados(dados_originais, arr_padrao, tamanho);*/
+    dados_originais = ler_arquivo(caminho_input, &tamanho);
+    if (!dados_originais || tamanho == 0) {
+    fprintf(stderr, "Erro: Vetor de dados vazio ou falha na leitura do arquivo.\n");
+    return 1;
     }
 
     // Extrair as métricas de perfil da entrada (Parte 2)
+    double t_inicio_analise = obter_tempo_ms_main();
     PerfilEntrada perfil = analisar_input(dados_originais, tamanho);
+    double tempo_overhead_analise = obter_tempo_ms_main() - t_inicio_analise;
 
     printf("===========================================\n");
     printf("         RELATORIO DE PERFIL DA ENTRADA    \n");
@@ -123,8 +138,14 @@ int main(int argc, char *argv[]) {
     printf("Amplitude dos Valores    : %lld\n", perfil.amplitude);
     printf("Quantidade de Repetidos  : %d\n", perfil.repetidos);
     printf("Desordem Estimada        : %.2f%%\n", perfil.desordem_estimada_pct);
+    printf("Quase Ordenada           : %s\n", perfil.quase_ordenada ? "Sim" : "Nao");
+    printf("Padroes Sequenciais      : %d\n", perfil.padroes_sequenciais);
     printf("Tamanho Medio dos Runs   : %.2f\n", perfil.tamanho_medio_runs);
     printf("Densidade de Duplicatas  : %.2f%%\n", perfil.densidade_duplicatas);
+    printf("Media dos Valores        : %.2f\n", perfil.media_valores);
+    printf("Tipo de Distribuicao     : %s\n",
+           perfil.tipo_distribuicao < 0 ? "Concentrada nos menores" :
+           perfil.tipo_distribuicao > 0 ? "Concentrada nos maiores" : "Uniforme/equilibrada");
     printf("-------------------------------------------\n\n");
     
     // Aloca vetor de trabalho dinâmico para a execução
@@ -142,12 +163,19 @@ int main(int argc, char *argv[]) {
     if (strcmp(modo, "adaptativo") == 0) {
         printf(">>> MODO ADAPTATIVO ATIVADO <<<\n");
         algoritmo_utilizado = decidir_algoritmo(perfil);
-        printf("Algoritmo selecionado pela heuristica: %s\n\n", algoritmo_utilizado);
+        printf("Algoritmo selecionado pela heuristica: %s\n", algoritmo_utilizado);
+        printf("Tempo gasto na analise (Overhead): %.4f ms\n\n", tempo_overhead_analise);
+        
         m_resultado = executar_com_inteligencia(algoritmo_utilizado, dados_teste, tamanho);
+        
+        // SOMA FINAL: Tempo do Algoritmo + Tempo da Análise
+        m_resultado.tempo_ms += tempo_overhead_analise; 
+        
     } else {
         printf(">>> MODO FIXO ATIVADO <<<\n");
         printf("Algoritmo determinado manualmente: %s\n\n", algoritmo_fixo);
         algoritmo_utilizado = algoritmo_fixo;
+        resetar_dados(dados_teste, dados_originais, tamanho);
         m_resultado = executar_com_inteligencia(algoritmo_fixo, dados_teste, tamanho);
     }
 
@@ -157,6 +185,38 @@ int main(int argc, char *argv[]) {
     printf("===========================================\n");
     imprimir_metricas(algoritmo_utilizado, m_resultado);
     printf("===========================================\n");
+
+    printf("\n--- Metricas de Execucao (Parte 4) ---\n\n");
+
+// --- TESTE 1: Insertion Sort Clássico ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_insertionSort(dados_teste, tamanho);
+    imprimir_metricas("Insertion Sort Classico", m_resultado);
+
+    // --- TESTE 2: Selection Sort ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_selectionSort(dados_teste, tamanho);
+    imprimir_metricas("Selection Sort", m_resultado);
+
+    // --- TESTE 3: Heap Sort ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_heapSort(dados_teste, tamanho);
+    imprimir_metricas("Heap Sort", m_resultado);
+
+    // --- TESTE 4: Merge Sort ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_mergeSort(dados_teste, tamanho);
+    imprimir_metricas("Merge Sort", m_resultado);
+
+    // --- TESTE 5: Counting Sort ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_countingSort(dados_teste, tamanho);
+    imprimir_metricas("Counting Sort", m_resultado);
+
+    // --- TESTE 6: Quick Sort ---
+    resetar_dados(dados_teste, dados_originais, tamanho);
+    m_resultado = medir_quickSort(dados_teste, tamanho);
+    imprimir_metricas("Quick Sort", m_resultado);
 
     // Liberação de memória alocada dinamicamente
     free(dados_teste);
