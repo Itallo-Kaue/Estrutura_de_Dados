@@ -15,11 +15,11 @@ typedef struct {
 
 
 MetricasExecucao medir_insertionSort(int arr[], int n);
-MetricasExecucao medir_insertion2_0(int arr[], int n);
+MetricasExecucao medir_selectionSort(int arr[], int n)
 MetricasExecucao medir_quickSort(int arr[], int n);
 MetricasExecucao medir_mergeSort(int arr[], int n);
 MetricasExecucao medir_heapSort(int arr[], int n);
-MetricasExecucao medir_shellSort(int arr[], int n);
+MetricasExecucao medir_countingSort(int arr[], int n);
 
 void imprimir_metricas(const char *nome, MetricasExecucao m);
 
